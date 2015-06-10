@@ -4,7 +4,7 @@
 #
 # Install with this command (from the Pi):
 #
-# curl -s "https://raw.githubusercontent.com/jacobsalmela/pi-hole/master/automated%20install/basic-install.sh" | bash
+# curl -s "https://raw.githubusercontent.com/pew/pi-hole/master/automated%20install/basic-install.sh" | bash
 #
 # Or run the commands below in order
 
@@ -36,15 +36,13 @@ sudo service dnsmasq stop
 
 echo "Backing up original config files and downloading Pi-hole ones..."
 sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
-sudo curl -o /etc/dnsmasq.conf "https://raw.githubusercontent.com/jacobsalmela/pi-hole/master/advanced/dnsmasq.conf"
-sudo mkdir /var/www/pihole
-sudo curl -o /var/www/pihole/index.html "https://raw.githubusercontent.com/jacobsalmela/pi-hole/master/index.html"
+sudo curl -o /etc/dnsmasq.conf "https://raw.githubusercontent.com/pew/pi-hole/master/advanced/dnsmasq.conf"
 
 echo "Turning services back on..."
 sudo service dnsmasq start
 
 echo "Locating the Pi-hole..."
-sudo curl -o /usr/local/bin/gravity.sh "https://raw.githubusercontent.com/jacobsalmela/pi-hole/master/gravity-adv.sh"
+sudo curl -o /usr/local/bin/gravity.sh "https://raw.githubusercontent.com/pew/pi-hole/master/gravity-adv.sh"
 sudo chmod 755 /usr/local/bin/gravity.sh
 echo "Entering the event horizon..."
 sudo /usr/local/bin/gravity.sh
