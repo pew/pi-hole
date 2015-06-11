@@ -36,13 +36,13 @@ service dnsmasq stop
 
 echo "Backing up original config files and downloading Pi-hole ones..."
 mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
-curl -o /etc/dnsmasq.conf "https://raw.githubusercontent.com/pew/pi-hole/master/advanced/dnsmasq.conf"
+curl -so /etc/dnsmasq.conf "https://raw.githubusercontent.com/pew/pi-hole/master/advanced/dnsmasq.conf"
 
 echo "Turning services back on..."
 service dnsmasq start
 
 echo "Locating the Pi-hole..."
-curl -o /usr/local/bin/gravity.sh "https://raw.githubusercontent.com/pew/pi-hole/master/gravity-adv.sh"
+curl -so /usr/local/bin/gravity.sh "https://raw.githubusercontent.com/pew/pi-hole/master/gravity-adv.sh"
 chmod 755 /usr/local/bin/gravity.sh
 echo "Entering the event horizon..."
 /usr/local/bin/gravity.sh
