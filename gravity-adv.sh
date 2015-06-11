@@ -33,7 +33,7 @@ curl -s http://adblock.gjtech.net/?format=unix-hosts | grep -v "#" | sed '/^$/d'
 echo "Getting someone who cares ad list..." # 10600
 curl -s http://someonewhocares.org/hosts/hosts | grep -v "#" | sed '/^$/d' | sed 's/\ /\\ /g' | grep -v '^\\' | grep -v '\\$' | awk '{print $2}' | grep -v '^\\' | grep -v '\\$' | sort >> /tmp/matter.txt
 echo "Getting Mother of All Ad Blocks list..." # 102168 domains!! Thanks Kacy
-curl -A 'Mozilla/5.0 (X11; Linux x86_64; rv:30.0) Gecko/20100101 Firefox/30.0' -e http://forum.xda-developers.com/ http://adblock.mahakala.is/ | grep -v "#" | awk '{print $2}' | sort >> /tmp/matter.txt
+curl -s http://adblock.mahakala.is/ | grep -v "#" | awk '{print $2}' | sort >> /tmp/matter.txt
 
 # Add entries from the local blacklist file if it exists in /etc/pihole directory
 if [[ -f $blacklist ]];then

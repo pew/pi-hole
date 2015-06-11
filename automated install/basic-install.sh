@@ -25,7 +25,7 @@ echo "									  "
 sleep 2
 
 echo "Updating the Pi..."
-apt-get update
+apt-get -qq update
 apt-get -y upgrade
 
 echo "Installing DNS..."
