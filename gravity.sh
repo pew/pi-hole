@@ -15,7 +15,7 @@ adFile="/etc/dnsmasq.d/adList.conf"
 eventHorizion="/etc/dnsmasq.d/adList.conf.tmp"
  
 # Parses out the default 127.0.0.1 address and replaces it with the IP where ads will be sent
-curl $adListURL | sed "s/127\.0\.0\.1/$piholeIP/" > $eventHorizion
+curl -s $adListURL | sed "s/127\.0\.0\.1/$piholeIP/" > $eventHorizion
 
 # If the temporary list of ad servers already exists (the eventHorizion)  
 if [ -f "$eventHorizion" ];then
