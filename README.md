@@ -11,7 +11,7 @@ Featured on [MakeUseOf](http://www.makeuseof.com/tag/adblock-everywhere-raspberr
 ## Automated Install
 On a clean installation of Raspbian, you can run this command to **auto-install the Pi-hole**.  Once installed, configure any device to use the Raspberry Pi as your DNS server and the ads will be blocked.
 
-```curl -s "https://raw.githubusercontent.com/pew/pi-hole/master/automated%20install/basic-install.sh" | bash```
+```curl -s "https://raw.githubusercontent.com/pew/pi-hole/master/basic-install.sh" | bash```
 
 ## Gravity
 The [gravity-adv.sh](https://github.com/pew/pi-hole/blob/master/gravity-adv.sh) does most of the magic.  The script pulls in ad domains from many sources and compiles them into a single list of [over 120,000 entries](http://jacobsalmela.com/blocking-ads-from-120000-domains/).
