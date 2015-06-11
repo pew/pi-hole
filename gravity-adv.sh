@@ -1,5 +1,4 @@
 #!/bin/bash
-# The Pi-hole now blocks over 120,000 ad domains
 # Address to send ads to (the RPi)
 piholeIP="127.0.0.1"
 
