@@ -15,7 +15,7 @@ if [[ -d /etc/pihole/ ]];then
 	:
 else
 	echo "Forming pihole directory..."
-	sudo mkdir /etc/pihole
+	mkdir /etc/pihole
 fi
 
 echo "Getting yoyo ad list..." # Approximately 2452 domains at the time of writing
@@ -60,7 +60,7 @@ numberOfAdsBlocked=$(cat /tmp/andLight.txt | wc -l | sed 's/^[ \t]*//')
 echo "$numberOfAdsBlocked ad domains blocked."
 
 # Turn the file into a dnsmasq config file
-sudo mv /tmp/andLight.txt $eventHorizion
+mv /tmp/andLight.txt $eventHorizion
 
 # Restart DNS
-sudo service dnsmasq restart
+service dnsmasq restart

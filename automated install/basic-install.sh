@@ -25,27 +25,27 @@ echo "									  "
 sleep 2
 
 echo "Updating the Pi..."
-sudo apt-get update
-sudo apt-get -y upgrade
+apt-get update
+apt-get -y upgrade
 
 echo "Installing DNS..."
-sudo apt-get -y install dnsutils dnsmasq
+apt-get -y install dnsutils dnsmasq
 
 echo "Stopping services to modify them..."
-sudo service dnsmasq stop
+service dnsmasq stop
 
 echo "Backing up original config files and downloading Pi-hole ones..."
-sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
-sudo curl -o /etc/dnsmasq.conf "https://raw.githubusercontent.com/pew/pi-hole/master/advanced/dnsmasq.conf"
+mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+curl -o /etc/dnsmasq.conf "https://raw.githubusercontent.com/pew/pi-hole/master/advanced/dnsmasq.conf"
 
 echo "Turning services back on..."
-sudo service dnsmasq start
+service dnsmasq start
 
 echo "Locating the Pi-hole..."
-sudo curl -o /usr/local/bin/gravity.sh "https://raw.githubusercontent.com/pew/pi-hole/master/gravity-adv.sh"
-sudo chmod 755 /usr/local/bin/gravity.sh
+curl -o /usr/local/bin/gravity.sh "https://raw.githubusercontent.com/pew/pi-hole/master/gravity-adv.sh"
+chmod 755 /usr/local/bin/gravity.sh
 echo "Entering the event horizon..."
-sudo /usr/local/bin/gravity.sh
+/usr/local/bin/gravity.sh
 
 echo "Restarting services..."
-sudo service dnsmasq restart
+service dnsmasq restart
