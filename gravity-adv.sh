@@ -37,7 +37,7 @@ echo "Getting someone who cares ad list..." # 10600
 curl -s http://someonewhocares.org/hosts/hosts | egrep -v '^#'|sed '/^$/d'|awk '{print $2}' | sort >> /tmp/matter.txt
 
 echo "Getting Mother of All Ad Blocks list..." # 102168 domains!! Thanks Kacy
-curl -s http://adblock.mahakala.is/ | grep -v "#" | awk '{print $2}' | sort >> /tmp/matter.txt
+curl -s -A 'Mozilla/5.0 (X11; Linux x86_64; rv:30.0) Gecko/20100101 Firefox/30.0' -e http://forum.xda-developers.com/ http://adblock.mahakala.is/ | egrep -v '^#' | awk '{print $2}' | sort >> /tmp/matter.txt
 
 # Add entries from the local blacklist file if it exists in /etc/pihole directory
 if [[ -f $blacklist ]];then
