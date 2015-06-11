@@ -2,8 +2,6 @@
 # The Pi-hole now blocks over 120,000 ad domains
 # Address to send ads to (the RPi)
 piholeIP="127.0.0.1"
-# Optionally, uncomment to automatically detect the local IP address.
-#piholeIP=$(hostname -I)
 
 # Config file to hold URL rules
 eventHorizion="/etc/dnsmasq.d/adList.conf"
@@ -20,18 +18,25 @@ fi
 
 echo "Getting yoyo ad list..." # Approximately 2452 domains at the time of writing
 curl -s -d mimetype=plaintext -d hostformat=unixhosts http://pgl.yoyo.org/adservers/serverlist.php? | sort > /tmp/matter.txt
+
 echo "Getting winhelp2002 ad list..." # 12985 domains
-curl -s http://winhelp2002.mvps.org/hosts.txt | grep -v "#" | grep -v "127.0.0.1" | sed '/^$/d' | sed 's/\ /\\ /g' | awk '{print $2}' | sort >> /tmp/matter.txt
+curl -s http://winhelp2002.mvps.org/hosts.txt | egrep -v '^#'|sed '/^$/d'|awk '{print $2}' | sort >> /tmp/matter.txt
+
 echo "Getting adaway ad list..." # 445 domains
-curl -s https://adaway.org/hosts.txt | grep -v "#" | grep -v "::1" | sed '/^$/d' | sed 's/\ /\\ /g' | awk '{print $2}' | grep -v '^\\' | grep -v '\\$' | sort >> /tmp/matter.txt
+curl -s https://adaway.org/hosts.txt | egrep -v '^#'|sed '/^$/d'|awk '{print $2}'| sort >> /tmp/matter.txt
+
 echo "Getting hosts-file ad list..." # 28050 domains
-curl -s http://hosts-file.net/.%5Cad_servers.txt | grep -v "#" | grep -v "::1" | sed '/^$/d' | sed 's/\ /\\ /g' | awk '{print $2}' | grep -v '^\\' | grep -v '\\$' | sort >> /tmp/matter.txt
+curl -s http://hosts-file.net/ad_servers.txt | egrep -v '^#'|sed '/^$/d'|awk '{print $2}' | sort >> /tmp/matter.txt
+
 echo "Getting malwaredomainlist ad list..." # 1352 domains
-curl -s http://www.malwaredomainlist.com/hostslist/hosts.txt | grep -v "#" | sed '/^$/d' | sed 's/\ /\\ /g' | awk '{print $3}' | grep -v '^\\' | grep -v '\\$' | sort >> /tmp/matter.txt
+curl -s http://www.malwaredomainlist.com/hostslist/hosts.txt |egrep -v '^#'|sed '/^$/d'|awk '{print $2}'| sort >> /tmp/matter.txt
+
 echo "Getting adblock.gjtech ad list..." # 696 domains
-curl -s http://adblock.gjtech.net/?format=unix-hosts | grep -v "#" | sed '/^$/d' | sed 's/\ /\\ /g' | awk '{print $2}' | grep -v '^\\' | grep -v '\\$' | sort >> /tmp/matter.txt
+curl -s http://adblock.gjtech.net/?format=unix-hosts | egrep -v '^#'|sed '/^$/d'|awk '{print $2}' | sort >> /tmp/matter.txt
+
 echo "Getting someone who cares ad list..." # 10600
-curl -s http://someonewhocares.org/hosts/hosts | grep -v "#" | sed '/^$/d' | sed 's/\ /\\ /g' | grep -v '^\\' | grep -v '\\$' | awk '{print $2}' | grep -v '^\\' | grep -v '\\$' | sort >> /tmp/matter.txt
+curl -s http://someonewhocares.org/hosts/hosts | egrep -v '^#'|sed '/^$/d'|awk '{print $2}' | sort >> /tmp/matter.txt
+
 echo "Getting Mother of All Ad Blocks list..." # 102168 domains!! Thanks Kacy
 curl -s http://adblock.mahakala.is/ | grep -v "#" | awk '{print $2}' | sort >> /tmp/matter.txt
 
