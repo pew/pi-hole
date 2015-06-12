@@ -2,7 +2,7 @@
 # Pi-hole automated install
 # (Raspberry Pi) Ad-blocker
 #
-# curl -s "https://raw.githubusercontent.com/pew/pi-hole/master/automated%20install/basic-install.sh" | bash
+# curl -s "https://raw.githubusercontent.com/pew/pi-hole/master/basic-install.sh" | bash
 #
 # Or run the commands below in order
 
